@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>To do list</title>
+
+
+    <style>
+        section {
+            background-color: rgb(225, 211, 130);
+            height: auto;
+            width: auto;
+            margin: 5rem 8rem;
+            border: 2px solid brown;
+            padding: 15px;
+            border-radius: 1rem;
+
+        }
+
+
+        body {
+            display: inline-block;
+        }
+
+        h2 {
+            font-family: verdana;
+            background-color: rgb(185, 214, 214);
+            text-align: center;
+            margin: 2rem 6rem;
+        }
+
+        #add {
+            display: inline-block;
+            padding: 0 2px;
+            background: lightgray;
+            font-size: large;
+            border: 2px outset #3a4ece;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+
+        #add:hover {
+            background-color: rgb(151, 189, 151);
+        }
+
+        #add:active {
+            border-style: inset;
+        }
+
+        #entry {
+            font-size: larger;
+        }
+
+        a:hover {
+            background-color: rgb(185, 214, 214);
+            border-radius: 5%;
+            border: 2px solid green;
+        }
+
+        a {
+            color: rgb(218, 54, 54);
+            cursor: pointer;
+            text-decoration: none;
+        }
+
+    
+    </style>
+
+
+
+
+
+
+    </style>
+
+
+</head>
+
+<body>
+
+
+
+
+
+    <section>
+
+
+        <h2> To do list </h2>
+
+
+        <input id="entry" placeholder="write here">
+        <button id="add" class="btnbtn-success">Add a Task</button>
+        <div id="items"></div>
+    </section>
+
+
+    <script type="text/javascript">
+
+
+        var items = [];
+
+        function listTodos() {
+            var html = '<ol>';
+            for (i = 0; i < items.length; i++) {
+                html += '<li><span class="todoItem">' + items[i] + '</span> ==><a href="#" class="deleteItem  "> Delete</a>' + '</li>';
+            };
+            html += '</ol>';
+
+            document.getElementById('items').innerHTML = html;
+            var todoItem = document.getElementsByClassName('todoItem');
+
+            // loop through all items in the array and add the event listener
+            for (i = 0; i < todoItem.length; i++) {
+                // Set id to uniquely identify each todo item
+                todoItem[i].id = 'todoItem-' + i;
+                id = todoItem[i].id;
+            }
+
+            // Function to remove todo items if "---Delete" is clicked
+            var deleteItems = document.getElementsByClassName('deleteItem');
+            for (i = 0; i < deleteItems.length; i++) {
+                deleteItems[i].id = i;
+                deleteItems[i].addEventListener('click', remove);
+            };
+        }
+
+        function remove(event) {
+            items.splice(event.target.id, 1);
+            listTodos();
+            return false;
+        }
+
+        document.getElementById('add').addEventListener('click', add);
+
+        function add() {
+            var task = document.getElementById('entry').value;
+            if (task != '') {
+                items.push(task);
+                listTodos();
+                return false;
+            }
+
+            return false;
+        }
+
+
+
+
+    </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</body>
+
+</html>
